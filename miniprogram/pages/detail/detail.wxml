@@ -1,0 +1,29 @@
+<view class="page-container">
+  <view class="video-content">
+    <video class="video" src=""></video>
+  </view>
+  <view class="course-content">
+    <view class="course-details">
+      <view class="course-title">{{courses.name}}</view>
+      <view class="course-message">
+        {{courses.total_duration}}
+        <span class="divider"></span>
+        {{courses.contents_children_count}}课时
+      </view>
+      <view class="course-price-content">
+        <span class="course-price-label">￥</span>
+        <span class="course-price-current">{{courses.current_price}}</span>
+        <span class="course-price-original">{{courses.original_price}}</span>
+      </view>
+    </view>
+    <view class="course-chapter">
+      <view class="chapter-item" wx:for="{{ courses.content }}" wx:key="index">
+        {{item.name}}
+        <view class="item-content" hover-class="item-content-hover" wx:for="{{item.children}}" wx:for-item="data" wx:for-index="ids" wx:key="data">
+          <view class="item-title">{{data.name}}</view>
+          <view class="item-time">{{data.duration}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,13 +1,33 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<view class="page-container">
+  <view class="course-section">
+    <view class="course-list">
+      <view class="course-item" wx:for="{{ courses }}" wx:key="index"
+        hover-class="course-item-hover" data-id="{{item.id}}" bindtap="goToCourseDetail">
+        <view class="course-item-top">
+          <image class="course-cover" src="{{item.cover_url}}" lazy-load mode="aspectFill"></image>
+          <view class="course-status-label" wx:if="{{item.status_label}}">
+            {{item.status_label}}
+          </view>
+        </view>
+        <view class="course-item-bottom">
+          <view class="course-name">
+            {{item.name}}
+          </view>
+          <view class="course-introduction">
+            {{item.introduction}}
+          </view>
+          <view class="course-message">
+            {{item.total_duration}}
+            <span class="divider"></span>
+            {{item.contents_children_count}}课时
+          </view>
+          <view class="course-price-content">
+            <span class="course-price-label">￥</span>
+            <span class="course-price-current">{{ item.current_price }}</span>
+            <span class="course-price-original">￥{{ item.original_price }}</span>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
